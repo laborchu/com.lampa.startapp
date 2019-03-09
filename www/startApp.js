@@ -49,6 +49,26 @@ module.exports = {
 				    }
 				}, errorCallback, "startApp", "start", output);
 			},
+			go: function(completeCallback, errorCallback) {
+				completeCallback = completeCallback || function() {};
+				errorCallback = errorCallback || function() {};
+				messageCallback = messageCallback || function() {};
+				
+				exec(function(result) {
+				    if(result === "OK") {
+				        completeCallback(result);
+				    }
+				    else {
+				        var requestCode = result["_ACTION_requestCode_"];
+				        delete result["_ACTION_requestCode_"];
+
+				        var resultCode = result["_ACTION_resultCode_"];
+				        delete result["_ACTION_resultCode_"];
+
+				        messageCallback(result, requestCode, resultCode);
+				    }
+				}, errorCallback, "startApp", "go", output);
+			},
 			check: function(completeCallback, errorCallback) {
 				completeCallback = completeCallback || function() {};
 				errorCallback = errorCallback || function() {};
