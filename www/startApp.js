@@ -49,7 +49,7 @@ module.exports = {
 				    }
 				}, errorCallback, "startApp", "start", output);
 			},
-			go: function(completeCallback, errorCallback) {
+			go: function(completeCallback, errorCallback, messageCallback) {
 				completeCallback = completeCallback || function() {};
 				errorCallback = errorCallback || function() {};
 				messageCallback = messageCallback || function() {};
